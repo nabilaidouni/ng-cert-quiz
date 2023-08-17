@@ -1,0 +1,12 @@
+<div class="dropdown">
+  <input type="text"
+         class="dropbtn"
+         [formControl]="itemControl"
+         [placeholder]="placeholder"/>
+  <div *ngIf="filteredItems$ | async as items"
+       class="dropdown-content">
+    <span *ngFor="let item of items; trackBy:identify"
+          (click)="select(item)"
+          [innerHTML]="item.name | bold: itemControl.value"></span>
+  </div>
+</div>
