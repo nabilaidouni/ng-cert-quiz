@@ -6,6 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class BoldPipe implements PipeTransform {
   transform(value: string, boldValue: string): string {
+    if (!value) {
+      return '';
+    }
+
     const index = value.toLowerCase().indexOf(boldValue.toLowerCase());
     if (index >= 0) {
       return value.substring(0, index)

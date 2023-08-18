@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, Observable} from 'rxjs';
-import {Category, Difficulty, ApiQuestion, Question, Results} from '../model/data.models';
+import {Difficulty, ApiQuestion, Question, Results, SubCategory} from '../model/data.models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class QuizService {
   constructor(private http: HttpClient) {
   }
 
-  getAllCategories(): Observable<Category[]> {
-    return this.http.get<{ trivia_categories: Category[] }>(this.API_URL + "api_category.php").pipe(
+  getAllSubCategories(): Observable<SubCategory[]> {
+    return this.http.get<{ trivia_categories: SubCategory[] }>(this.API_URL + "api_category.php").pipe(
       map(res => res.trivia_categories)
     );
   }

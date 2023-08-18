@@ -1,8 +1,15 @@
 <div class="row">
   <div class="col-sm-11">
-    <app-filter-input placeholder="Select category"
+    <app-filter-input id="categorySelect"
+                      placeholder="Select category"
                       [items$]="categories$"
-                      [(selection)]="category">
+                      (selectionChange)="updateSubCategories($event)">
+    </app-filter-input>
+    <app-filter-input id="subCategorySelect"
+                      placeholder="Select sub-category"
+                      [ngClass]="{'hidden': category?.subCategories?.length <= 1}"
+                      [items$]="subCategories$"
+                      [(selection)]="subCategory">
     </app-filter-input>
     <select #difficulty id="difficultySelect">
       <option>Select difficulty</option>
@@ -10,9 +17,9 @@
       <option>Medium</option>
       <option>Hard</option>
     </select>
-    <button class="primary" id="createBtn" (click)="createQuiz(category.id.toString(), difficulty.value)">Create</button>
+    <button class="primary" id="createBtn" (click)="createQuiz(subCategory.id, difficulty.value)">Create</button>
   </div>
 </div>
 <div class="row">
-   <app-quiz [questions]="questions$ | async" ></app-quiz>
+   <app-quiz [questions]="questions$ | async"></app-quiz>
 </div>
