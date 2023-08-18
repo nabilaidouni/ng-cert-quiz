@@ -7,7 +7,7 @@
     </app-filter-input>
     <app-filter-input id="subCategorySelect"
                       placeholder="Select sub-category"
-                      [ngClass]="{'hidden': category?.subCategories?.length <= 1}"
+                      [ngClass]="{'hidden': category?.subItems?.length <= 1}"
                       [items$]="subCategories$"
                       [(selection)]="subCategory">
     </app-filter-input>

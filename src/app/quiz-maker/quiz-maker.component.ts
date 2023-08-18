@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Category, Difficulty, Question, SubCategory} from '../model/data.models';
 import {map, Observable, of, Subject, switchMap} from 'rxjs';
 import {QuizService} from '../service/quiz.service';
-import {CategoryService} from '../service/category.service';
+import {ItemService} from '../service/category.service';
 
 @Component({
   selector: 'app-quiz-maker',
@@ -11,7 +11,7 @@ import {CategoryService} from '../service/category.service';
 })
 export class QuizMakerComponent implements OnInit {
   categories$: Observable<Category[]>;
-  currentCategory$ = new Subject<Category>();
+  currentCategory$: Subject<Category> = new Subject<Category>();
   subCategories$: Observable<SubCategory[]>;
 
   category: Category;
@@ -20,21 +20,21 @@ export class QuizMakerComponent implements OnInit {
   questions$: Observable<Question[]>;
 
   constructor(protected quizService: QuizService,
-              private categoryService: CategoryService) {}
+              private itemService: ItemService<Category, SubCategory>) {}
 
   ngOnInit() {
     this.categories$ = this.quizService.getAllSubCategories().pipe(
-        map(subCategories => this.categoryService.toCategories(subCategories))
+        map((subCategories: SubCategory[]) => this.itemService.toItems(subCategories))
     );
 
     this.subCategories$ = this.currentCategory$.asObservable().pipe(
-        switchMap(category => of(category.subCategories))
+        switchMap((category: Category) => of(category.subItems))
     );
   }
 
-  updateSubCategories(category: Category) {
+  updateSubCategories(category: Category): void {
     this.category = category;
-    this.subCategory = category.subCategories.length === 1 ? category.subCategories[0] : null;
+    this.subCategory = category.subItems.length === 1 ? category.subItems[0] : null;
     this.currentCategory$.next(category);
   }
 

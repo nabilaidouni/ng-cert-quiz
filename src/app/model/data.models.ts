@@ -1,14 +1,20 @@
-export interface DropdownItem {
+export interface Nameable {
   name: string;
 }
 
-export interface Category extends DropdownItem {
-  subCategories: SubCategory[];
-}
-
-export interface SubCategory extends DropdownItem {
+export interface Identifiable {
   id: string;
 }
+
+export interface NameableAndIdentifiable extends Nameable, Identifiable {}
+
+export interface ArrayNameable extends Nameable {
+  subItems: NameableAndIdentifiable[]
+}
+
+export interface Category extends ArrayNameable {}
+
+export interface SubCategory extends NameableAndIdentifiable {}
 
 export interface ApiQuestion {
   category: string;

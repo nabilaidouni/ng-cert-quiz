@@ -1,14 +1,14 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {combineLatest, map, Observable} from 'rxjs';
-import {DropdownItem} from '../model/data.models';
+import {Nameable} from '../model/data.models';
 
 @Component({
   selector: 'app-filter-input',
   templateUrl: './filter-input.component.html',
   styleUrls: ['./filter-input.component.css']
 })
-export class FilterInputComponent<T extends DropdownItem> implements OnInit {
+export class FilterInputComponent<T extends Nameable> implements OnInit {
   @Input()
   placeholder: string = 'Select item';
   @Input()

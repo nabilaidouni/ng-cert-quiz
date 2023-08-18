@@ -1,32 +1,43 @@
 import { Injectable } from '@angular/core';
-import {Category, SubCategory} from '../model/data.models';
+import { ArrayNameable, NameableAndIdentifiable } from '../model/data.models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
-  toCategories(subCategories: SubCategory[]): Category[] {
-    let categories: Category[] = [];
+export class ItemService<T extends ArrayNameable,  U extends NameableAndIdentifiable> {
 
-    subCategories.forEach(subCategory => {
-      let index = categories.map(category => category.name).indexOf(subCategory.name.split(':')[0]);
+  private readonly SEPARATOR: string = ':';
+
+  public toItems(subItems: U[]): T[] {
+    let items: T[] = [];
+
+    subItems.forEach((subItem: U) => {
+      let leftStr: string = subItem.name.split(this.SEPARATOR, 2)[0]?.trim();
+      let rightStr: string = subItem.name.split(this.SEPARATOR,2)[1]?.trim();
+      let index: number = items.map((item: T) => item.name).indexOf(leftStr);
+
       if (index === -1) {
-        categories.push({
-          name: subCategory.name.split(':')[0],
-          subCategories: [
-            {
-              id: subCategory.id,
-              name: subCategory.name.split(':')[1]
-            } as SubCategory
-          ]
-        } as Category)
-      } else if (index !== -1 && categories[index].subCategories.map(sub => sub.id).indexOf(subCategory.id) === -1) {
-        categories[index].subCategories.push({
-          id: subCategory.id,
-          name: subCategory.name.split(':')[1]
-        } as SubCategory);
+        items.push(
+            this.buildItem(leftStr, [this.buildSubItem(subItem.id, rightStr)])
+        );
+      } else if (index !== -1 && items[index].subItems.map((sub: U) => sub.id).indexOf(subItem.id) === -1) {
+        items[index].subItems.push(this.buildSubItem(subItem.id, rightStr));
       }
     });
-    return categories;
+    return items;
+  }
+
+  private buildItem(name, subItems): T {
+    return {
+      name: name,
+      subItems: subItems
+    } as T
+  }
+
+  private buildSubItem(id, name): U {
+    return {
+      id: id,
+      name: name
+    } as U
   }
 }
