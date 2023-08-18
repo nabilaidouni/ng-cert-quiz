@@ -2,14 +2,12 @@ export interface DropdownItem {
   name: string;
 }
 
-export interface Category {
-  name: string;
+export interface Category extends DropdownItem {
   subCategories: SubCategory[];
 }
 
-export interface SubCategory {
+export interface SubCategory extends DropdownItem {
   id: string;
-  name: string;
 }
 
 export interface ApiQuestion {
