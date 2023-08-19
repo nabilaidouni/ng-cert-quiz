@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {combineLatest, map, Observable} from 'rxjs';
-import {Nameable} from '../model/data.models';
+import {Nameable} from '../../model/data.models';
 
 @Component({
   selector: 'app-filter-input',

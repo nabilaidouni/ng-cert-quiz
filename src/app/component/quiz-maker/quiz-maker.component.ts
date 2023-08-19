@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Category, Difficulty, Question, SubCategory} from '../model/data.models';
+import {Category, Difficulty, Question, SubCategory} from '../../model/data.models';
 import {map, Observable, of, Subject, switchMap} from 'rxjs';
-import {QuizService} from '../service/quiz.service';
-import {ItemService} from '../service/category.service';
+import {QuizService} from '../../service/quiz.service';
+import {ItemService} from '../../service/category.service';
 
 @Component({
   selector: 'app-quiz-maker',

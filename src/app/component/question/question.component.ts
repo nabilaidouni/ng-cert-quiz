@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {Question} from '../model/data.models';
+import {Question} from '../../model/data.models';
 
 @Component({
   selector: 'app-question',

@@ -5,11 +5,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {QuizMakerComponent} from './quiz-maker/quiz-maker.component';
-import { QuizComponent } from './quiz/quiz.component';
-import { QuestionComponent } from './question/question.component';
-import { AnswersComponent } from './answers/answers.component';
-import { FilterInputComponent } from './filter-input/filter-input.component';
+import {QuizMakerComponent} from './component/quiz-maker/quiz-maker.component';
+import { QuizComponent } from './component/quiz/quiz.component';
+import { QuestionComponent } from './component/question/question.component';
+import { AnswersComponent } from './component/answers/answers.component';
+import { FilterInputComponent } from './component/filter-input/filter-input.component';
 import {BoldPipe} from './pipe/bold.pipe';
 
 @NgModule({
