@@ -11,6 +11,7 @@ import { QuestionComponent } from './component/question/question.component';
 import { AnswersComponent } from './component/answers/answers.component';
 import { FilterInputComponent } from './component/filter-input/filter-input.component';
 import {BoldPipe} from './pipe/bold.pipe';
+import { ActionButtonComponent } from './component/action-button/action-button.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {BoldPipe} from './pipe/bold.pipe';
     QuizComponent,
     QuestionComponent,
     AnswersComponent,
-    FilterInputComponent
+    FilterInputComponent,
+    ActionButtonComponent
   ],
   imports: [
     BrowserModule,

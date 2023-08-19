@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Question} from '../../model/data.models';
 
 @Component({
@@ -7,6 +7,7 @@ import {Question} from '../../model/data.models';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent {
+  protected static _swapped: boolean = false;
 
   @Input({required: true})
   question!: Question;
@@ -14,6 +15,14 @@ export class QuestionComponent {
   correctAnswer?: string;
   @Input()
   userAnswer?: string;
+  @Input()
+  set swapped(swapped: boolean) {
+    QuestionComponent._swapped = swapped;
+  }
+
+  get swapped(): boolean {
+    return QuestionComponent._swapped;
+  }
 
   getButtonClass(answer: string): string {
     if (! this.userAnswer) {
@@ -30,6 +39,8 @@ export class QuestionComponent {
 
   @Output()
   change = new EventEmitter<string>();
+  @Output()
+  swap: EventEmitter<Question> = new EventEmitter<Question>();
 
   currentSelection!: string;
 

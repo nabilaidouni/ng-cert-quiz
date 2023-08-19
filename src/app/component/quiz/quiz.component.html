@@ -1,5 +1,7 @@
 <app-question *ngFor="let q of questions; index as i" [question]="q"
-              (change)="userAnswers[i] = $event">
+              [swapped]="swapped"
+              (change)="userAnswers[i] = $event"
+              (swap)="swap($event)">
 </app-question>
 <div>
   <button class="inverse large" *ngIf="userAnswers.length == 5" (click)="submit()">

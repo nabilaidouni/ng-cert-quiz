@@ -17,9 +17,13 @@
       <option>Medium</option>
       <option>Hard</option>
     </select>
-    <button class="primary" id="createBtn" (click)="createQuiz(subCategory.id, difficulty.value)">Create</button>
+    <button id="createBtn"
+            class="primary"
+            [disabled]="!subCategory"
+            (click)="createQuiz(subCategory.id, difficulty.value)">Create</button>
   </div>
 </div>
 <div class="row">
-   <app-quiz [questions]="questions$ | async"></app-quiz>
+   <app-quiz *ngIf="questions$ | async as questions"
+             [questions]="questions"></app-quiz>
 </div>

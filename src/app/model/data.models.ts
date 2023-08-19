@@ -16,6 +16,8 @@ export interface Category extends ArrayNameable {}
 
 export interface SubCategory extends NameableAndIdentifiable {}
 
+export type Action = "SWAP";
+
 export interface ApiQuestion {
   category: string;
   type: string;
