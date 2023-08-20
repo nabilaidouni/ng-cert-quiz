@@ -24,7 +24,7 @@ export class QuizComponent implements OnInit {
 
   ngOnInit() {
     if (this.questions?.length > 0) {
-      this.bonusQuestion = this.questions.at(-1);
+      this.bonusQuestion = this.questions[this.questions.length -1];
       this.questions = this.questions.slice(0, this.questions.length -1);
     }
   }
