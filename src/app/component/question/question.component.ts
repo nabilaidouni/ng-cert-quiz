@@ -7,7 +7,9 @@ import {Question} from '../../model/data.models';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent {
-  protected static _swapped: boolean = false;
+  static _swapped: boolean = false;
+
+  component = QuestionComponent;
 
   @Input({required: true})
   question!: Question;
@@ -20,9 +22,12 @@ export class QuestionComponent {
     QuestionComponent._swapped = swapped;
   }
 
-  get swapped(): boolean {
-    return QuestionComponent._swapped;
-  }
+  @Output()
+  change = new EventEmitter<string>();
+  @Output()
+  swap: EventEmitter<Question> = new EventEmitter<Question>();
+
+  currentSelection!: string;
 
   getButtonClass(answer: string): string {
     if (! this.userAnswer) {
@@ -36,13 +41,6 @@ export class QuestionComponent {
     }
     return "primary";
   }
-
-  @Output()
-  change = new EventEmitter<string>();
-  @Output()
-  swap: EventEmitter<Question> = new EventEmitter<Question>();
-
-  currentSelection!: string;
 
   buttonClicked(answer: string): void {
     this.currentSelection = answer;

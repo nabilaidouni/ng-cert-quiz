@@ -5,8 +5,7 @@
           *ngFor="let answer of question.all_answers"
           [innerHTML]="answer">
   </button>
-  <app-action-button action="SWAP"
-                     *ngIf="!swapped"
+  <app-action-button *ngIf="!component._swapped"
                      (trigger)="swap.emit(question)">
     <button class="swap-button">Change question</button>
   </app-action-button>
